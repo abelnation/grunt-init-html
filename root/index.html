@@ -7,32 +7,46 @@
   <meta name="description" content="{%= description %}">
   <meta name="viewport" content="width=device-width">
 
-  <link rel="stylesheet" href="./components/normalize-css/normalize.css" />
-  <link rel="stylesheet" href="./style.css" />
+  <!-- @if NODE_ENV == 'DEVELOPMENT' -->
+  <link rel="stylesheet" media="screen, projection" href="css/{%= name %}.css" />
+  <!-- @endif -->
 
-  <script src="./components/html5shiv/dist/html5shiv.js"></script>
+  <!-- @if NODE_ENV == 'PRODUCTION' -->
+  <link rel="stylesheet" media="screen, projection" href="css/{%= name %}.min.css" />
+  <!-- @endif -->
+
 </head>
 <body>
 
-<header>
-  <div class="container">
-    <h1>{%= name %}</h1>
-  </div>
-</header>
+  <header>
+    <div class="container">
+      <h1>{%= name %}</h1>
+    </div>
+  </header>
 
-<main role="main">
-  <div class="container">
-    <p>{%= description %}</p>
-  </div>
-</main>
+  <main role="main">
+    <div class="container">
+      <p>{%= description %}</p>
+    </div>
+  </main>
 
-<footer>
-  <div class="container">
-    <p><a href="/">{%= name %}</a></p>
-  </div>
-</footer>
+  <footer>
+    <div class="container">
+      <p><a href="/">{%= name %}</a></p>
+    </div>
+  </footer>
 
-<script src="./app.js"></script>
+  <script src="./js/lib/jquery/jquery.js"></script>
+
+  <!-- @if NODE_ENV == 'DEVELOPMENT' -->
+  <script src="./js/src/{%= name %}.js"></script>
+  <!-- @endif -->
+
+  <!-- @if NODE_ENV == 'PRODUCTION' -->
+  <script src="./js/{%= name %}.min.js"></script>
+  <!-- @endif -->
+  
+  
 
 </body>
 </html>
