@@ -137,6 +137,24 @@ module.exports = function (grunt) {
       }
     },
 
+    connect: {
+      dev: {
+        options: {
+          port: 8081,
+          base: 'build/dev/',
+          keepalive: true,
+          open: true
+        }
+      },
+      prod: {
+        options: {
+          port: 8081,
+          base: 'build/prod/',
+          keepalive: true
+        }
+      }
+    },
+
     watch: {
       gruntfile: {
         files: '<%= jshint.gruntfile.src %>',
@@ -147,21 +165,13 @@ module.exports = function (grunt) {
         tasks: ['jshint:src', 'qunit']
       },
       sass: {
-        files: '<%= sass.dist.files %>',
+        files: '**/*.scss',
         tasks: ['sass']
       },
       test: {
         files: '<%= jshint.test.src %>',
         tasks: ['jshint:test', 'qunit']
       },
-      scripts: {
-        files: ['**/*.js'],
-        tasks: ['jshint'],
-        options: {
-          spawn: false,
-        },
-      },
-
     },
 
   });
@@ -176,6 +186,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-preprocess');
   grunt.loadNpmTasks('grunt-env');
+  grunt.loadNpmTasks('grunt-contrib-connect');
 
   grunt.registerTask('default', ['dev']);
   grunt.registerTask('dev', ['env:dev', 'preprocess:dev', 'jshint', 'sass', 'copy:dev', 'qunit']);

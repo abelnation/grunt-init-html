@@ -49,6 +49,7 @@ exports.template = function(grunt, init, done){
       "grunt-contrib-clean": "~0.5.0",
       'grunt-preprocess': '~3.0.0',
       'grunt-env': '~0.4.0',
+      'grunt-contrib-connect': '~0.5.0',
     };
     // Generate package.json file, used by npm and grunt.
     init.writePackageJSON('package.json', props);
